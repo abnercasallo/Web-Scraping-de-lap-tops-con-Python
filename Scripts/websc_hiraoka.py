@@ -11,6 +11,7 @@ This is a temporary script file.
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import pandas as pd
+import requests
 
 #driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
 #prices=[]
@@ -19,7 +20,7 @@ import pandas as pd
 #soup = BeautifulSoup(content)
     
 
-import requests
+
 
 URL = 'https://hiraoka.com.pe/tecnologia/computadoras/laptops'
 page = requests.get(URL)
@@ -87,9 +88,17 @@ for i in range(1,5):#1,2,3,4
 print(prices)
 
 #ARMAMOS EL DATA FRAME
-df_11nov = pd.DataFrame(prices, columns =['Precios al 12/11/2020']) 
-print(df_11nov)
-df_11nov.to_csv(r'D:\Git Hub-BEST\Web-Scraping-de-lap-tops-con-Python\Data generada\12 de nov.csv',
+#df_11nov = pd.DataFrame(prices, columns =['Precios al 12/11/2020']) 
+df_17nov = pd.DataFrame(prices, columns =['Precios al 17/11/2020'])
+print(df_17nov)
+
+total=0
+for i in prices:
+    total=total+i
+print(total)
+print(total/len(prices))   ####SALE MÁS DE 5000, RAZÓN: OUTLIERS(10 MIL, 15 MIL...)
+
+df_17nov.to_csv(r'D:\Git Hub-BEST\Web-Scraping-de-lap-tops-con-Python\Data generada\17 de nov.csv',
                 sep=';')
 #TOTAL LIST, UNMOS LA LISTA DE LA PÁGINA 1 AL DE LA 2 A LA 4:
 #SI NO SE INCLUYÓ A LA LISTA
